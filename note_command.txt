@@ -1,0 +1,8 @@
+Use a tee command. It is meant exactly for this.
+
+python3 script.py | tee output.txt
+It can also be done in more complicated way. Run your original command in the background and simultaneusly view the contents of file output.txt in the foreground. I sometimes prefer to do it that way, especially for long-running processes, since I can at any time abort viewing of the output file and return to it anytime later:
+
+python3 script.py > output.txt &
+tail -f output.txt
+(you can Ctrl-C in the tail command at any time, and run again the command later).
