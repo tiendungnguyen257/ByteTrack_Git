@@ -73,7 +73,7 @@ class KalmanFilter(object):
         mean_vel = np.zeros_like(mean_pos)
         mean = np.r_[mean_pos, mean_vel]
         
-        mean1 = mean // test conflict, something wrong here
+        mean1 = mean # test conflict, fix bug comment
         
         std = [
             2 * self._std_weight_position * measurement[3],
