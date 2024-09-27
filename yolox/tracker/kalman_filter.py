@@ -70,7 +70,9 @@ class KalmanFilter(object):
 
         """
         mean_pos = measurement
+        print(mean_pos)
         mean_vel = np.zeros_like(mean_pos)
+        print(mean_vel)
         mean = np.r_[mean_pos, mean_vel]
         
         mean1 = mean # test conflict, fix bug comment
@@ -84,6 +86,8 @@ class KalmanFilter(object):
             10 * self._std_weight_velocity * measurement[3],
             1e-5,
             10 * self._std_weight_velocity * measurement[3]]
+        
+        print(std)
         covariance = np.diag(np.square(std))
         return mean, covariance
 
@@ -111,12 +115,22 @@ class KalmanFilter(object):
             self._std_weight_position * mean[3],
             1e-2,
             self._std_weight_position * mean[3]]
+        
+        print("std_pos", std_pos)
+
         std_vel = [
             self._std_weight_velocity * mean[3],
             self._std_weight_velocity * mean[3],
             1e-5,
             self._std_weight_velocity * mean[3]]
+        
+        print("std_vel", std_vel)
+
         motion_cov = np.diag(np.square(np.r_[std_pos, std_vel]))
+        print("motion_cov", motion_cov)
+
+        print("motion_mat", self._motion_mat)
+        print("motion_mat_Transposed", self._motion_mat.T)
 
         #mean = np.dot(self._motion_mat, mean)
         mean = np.dot(mean, self._motion_mat.T)
