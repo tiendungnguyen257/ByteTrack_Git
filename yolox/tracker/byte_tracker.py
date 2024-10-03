@@ -174,7 +174,7 @@ class BYTETracker(object):
         scale = min(img_size[0] / float(img_h), img_size[1] / float(img_w))
         bboxes /= scale
 
-        remain_inds = scores > self.args.track_thresh
+        remain_inds = scores > self.args.track_thresh       # return [True False ... True] for filtering indexs 
         inds_low = scores > 0.1
         inds_high = scores < self.args.track_thresh
 
