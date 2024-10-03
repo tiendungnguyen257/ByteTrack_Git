@@ -11,7 +11,7 @@ from yolox.tracker import matching
 from .basetrack import BaseTrack, TrackState
 
 class STrack(BaseTrack):
-    shared_kalman = KalmanFilter()
+    shared_kalman = KalmanFilter()          # initiate
     def __init__(self, tlwh, score):
 
         # wait activate
